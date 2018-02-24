@@ -15,7 +15,9 @@ public class SpawnForce : MonoBehaviour {
 	}
 
 	void Spawn () {
-		GameObject wave = Instantiate (wavePrefab, transform.position, transform.rotation);
+        GameObject midpoint = transform.GetChild(1).gameObject;
+        Vector3 newPos = new Vector3(transform.position.x, midpoint.transform.position.y, 0.0f);
+        GameObject wave = Instantiate (wavePrefab, newPos, midpoint.transform.rotation);
 	}
 	
 	// Update is called once per frame
