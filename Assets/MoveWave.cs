@@ -11,7 +11,6 @@ public class MoveWave : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ball = GameObject.Find ("Ball");
-		Debug.Log (ball.transform.position);
 		rb = ball.GetComponent<Rigidbody2D> ();
 	
 	}
