@@ -6,6 +6,9 @@ public class SpawnForce : MonoBehaviour {
 
 	public GameObject wavePrefab;
 
+	// bool set from input scripts
+	public bool triggered; 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,8 +20,9 @@ public class SpawnForce : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
+		if (triggered) {
 			Spawn ();
+			triggered = false; 
 		}
 	}
 }
