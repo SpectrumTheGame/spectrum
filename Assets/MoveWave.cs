@@ -6,23 +6,29 @@ public class MoveWave : MonoBehaviour {
 
 	GameObject ball;
 	Rigidbody2D rb;
-	bool isLeft;
+    public float amplitude; 
 
+    private bool applyingForce; 
 	// Use this for initialization
 	void Start () {
 		ball = GameObject.Find ("Ball");
 		rb = ball.GetComponent<Rigidbody2D> ();
-	
+        applyingForce = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(0.1f, 0, 0);
+		transform.Translate(0.1f * -amplitude, 0, 0);
 
 		Vector3 diff = transform.position - ball.transform.position;
-		if (diff.magnitude < 1) {
-			rb.AddForce(transform.right * 5.0f);
-		}
+		if (diff.magnitude < 1 && !applyingForce) {
+            applyingForce = true;
+            Debug.Log("force!!!");
+			rb.AddForce(transform.right * 500.0f * -amplitude);
+		} 
+
+
+
 
 		if (transform.position.x > 7) {
 			Destroy (this.gameObject);

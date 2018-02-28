@@ -15,9 +15,9 @@ public class VibrateStringMouse : MonoBehaviour {
         animated = true;
 
         startTime = Time.time;
-
-        // change vincent's boolean
+        
         this.GetComponentInParent<SpawnForce>().triggered = true;
+        this.GetComponentInParent<SpawnForce>().amplitude = amplitude;
     }
 
 	// Use this for initialization

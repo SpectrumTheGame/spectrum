@@ -6,8 +6,8 @@ public class SpawnForce : MonoBehaviour {
 
 	public GameObject wavePrefab;
 
-	// bool set from input scripts
-	public bool triggered; 
+	public bool triggered;
+    public float amplitude;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +18,7 @@ public class SpawnForce : MonoBehaviour {
         GameObject midpoint = transform.GetChild(1).gameObject;
         Vector3 newPos = new Vector3(transform.position.x, midpoint.transform.position.y, 0.0f);
         GameObject wave = Instantiate (wavePrefab, newPos, midpoint.transform.rotation);
+        wave.GetComponent<MoveWave>().amplitude = amplitude;
 	}
 	
 	// Update is called once per frame
