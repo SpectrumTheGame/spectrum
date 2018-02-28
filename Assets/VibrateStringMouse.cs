@@ -6,6 +6,7 @@ public class VibrateStringMouse : MonoBehaviour {
 
     public float amplitude;
     public float frequency;
+	public float segmentLen; 
 
     private float startTime;
     private bool animated;
@@ -18,6 +19,7 @@ public class VibrateStringMouse : MonoBehaviour {
         
         this.GetComponentInParent<SpawnForce>().triggered = true;
         this.GetComponentInParent<SpawnForce>().amplitude = amplitude;
+		this.GetComponentInParent<SpawnForce>().waveLen = 2.0f * segmentLen; // because segment length is half size of wave
     }
 
 	// Use this for initialization
@@ -26,7 +28,7 @@ public class VibrateStringMouse : MonoBehaviour {
         for (int i = 0; i < numPoints; i++)
         {
             GameObject c = transform.GetChild(i).gameObject;
-            c.transform.localPosition = new Vector3(0, i, 0);
+			c.transform.localPosition = new Vector3(0, i * segmentLen, 0);
         }
 
         
@@ -38,10 +40,10 @@ public class VibrateStringMouse : MonoBehaviour {
         {
             float t = Time.time - startTime;
             int numPoints = transform.childCount;
-            float x = amplitude * Mathf.Sin(frequency * 1) * Mathf.Sin(Mathf.PI * t);
+			float x = amplitude * Mathf.Sin(frequency * 1.0f * segmentLen) * Mathf.Sin(Mathf.PI * t);
             float x_d = x * Mathf.Exp(-t / 2.0f);
             GameObject c = transform.GetChild(1).gameObject;
-            c.transform.localPosition = new Vector3(x_d, 1, 0);
+			c.transform.localPosition = new Vector3(x_d, 1 * segmentLen, 0);
         }
 	}
 }
