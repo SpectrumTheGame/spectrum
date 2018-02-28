@@ -20,9 +20,7 @@ public class ReachedGoal : MonoBehaviour {
 		
 		if (collision.gameObject.name == "Ball") {
 			Debug.Log ("ball collided");
+			Destroy (gameObject);
 		}
-
-		Debug.Log ("collision");
-
 	}
 }
