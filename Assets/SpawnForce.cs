@@ -15,9 +15,10 @@ public class SpawnForce : MonoBehaviour {
 	}
 
 	void Spawn () {
-        GameObject midpoint = transform.GetChild(1).gameObject;
-        Vector3 newPos = new Vector3(transform.position.x, midpoint.transform.position.y, 0.0f);
-        GameObject wave = Instantiate (wavePrefab, newPos, midpoint.transform.rotation);
+		GameObject midpoint = transform.GetChild(1).gameObject;
+		Vector3 newPos = midpoint.transform.position;
+		GameObject wave = Instantiate (wavePrefab, newPos, midpoint.transform.rotation);
+		wave.transform.localPosition = new Vector3(wave.transform.localPosition.x, wave.transform.localPosition.y, 0.0f);
         wave.GetComponent<MoveWave>().amplitude = amplitude;
 	}
 	
