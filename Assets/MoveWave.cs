@@ -30,7 +30,8 @@ public class MoveWave : MonoBehaviour {
 			rb.AddForce(transform.right * 500.0f * -amplitude);
 		} 
 
-		if (transform.position.x > 7) {
+		if (transform.position.x > 10 || transform.position.x < -10
+			|| transform.position.y > 10 || transform.position.y < -10) {
 			Destroy (this.gameObject);
 		}
 	}
