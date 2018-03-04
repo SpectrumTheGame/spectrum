@@ -41,7 +41,7 @@ public class VibrateString : MonoBehaviour {
 		} else if (animating == true && t >= 5.0f) {
 			Debug.Log("daeun TURNING OFF ANIMATION AT " + t + " sec");
 			animating = false;
-			pull_script.TurnOffTouching ();
+			//pull_script.TurnOffTouching ();
 		}
 
 
