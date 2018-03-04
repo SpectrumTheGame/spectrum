@@ -25,10 +25,12 @@ public class VibrateStringMouse : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         int numPoints = transform.childCount;
+        Debug.Log(transform.position);
         for (int i = 0; i < numPoints; i++)
         {
             GameObject c = transform.GetChild(i).gameObject;
 			c.transform.localPosition = new Vector3(0, i * segmentLen, 0);
+            Debug.Log(c.transform.position);
         }
 
         
