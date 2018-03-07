@@ -23,11 +23,6 @@ public class MoveWave : MonoBehaviour {
 	void Update () {
 		transform.Translate(0.1f * -amplitude, 0, 0);
 
-		Debug.Log ("rend.bounds");
-		Debug.Log (rend.bounds);
-		Debug.Log ("ball.transform.position");
-		Debug.Log (ball.transform.position);
-
 		if (rend.bounds.Contains (ball.transform.position) 
 			&& !applyingForce) {
             applyingForce = true;
