@@ -23,6 +23,11 @@ public class VibrateStringMouse : MonoBehaviour {
 		this.GetComponentInParent<SpawnForce>().waveLen = 2.0f * segmentLen; // because segment length is half size of wave
     }
 
+    public void stopAnimation()
+    {
+        animated = false;
+    }
+
 	// Use this for initialization
 	void Start () {
         int numPoints = transform.childCount;

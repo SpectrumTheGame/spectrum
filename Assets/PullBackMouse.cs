@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PullBackMouse : MonoBehaviour {
 
+    Vector3 offset;
+
     // Use this for initialization
     void Start () {
 		
@@ -15,13 +17,17 @@ public class PullBackMouse : MonoBehaviour {
 		
 	}
 
-    private void OnMouseDrag()
+    private void OnMouseDown()
+    {
+        GetComponentInParent<VibrateStringMouse>().stopAnimation();
+    }
+
+private void OnMouseDrag()
     {
         float originalY = transform.localPosition.y;
         Vector3 newPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f);
         transform.position = Camera.main.ScreenToWorldPoint(newPos);
         transform.localPosition = new Vector3(transform.localPosition.x, originalY, 0.0f);
-        Debug.Log(transform.localPosition.x);
         GetComponentInParent<VibrateStringMouse>().amplitude = transform.localPosition.x;
     }
 
