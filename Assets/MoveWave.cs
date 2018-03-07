@@ -13,7 +13,7 @@ public class MoveWave : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ball = GameObject.Find ("Ball");
+		ball = GameObject.Find ("ball");
 		rb = ball.GetComponent<Rigidbody2D> ();
         applyingForce = false;
 		rend = GetComponent<Renderer>();
@@ -23,11 +23,16 @@ public class MoveWave : MonoBehaviour {
 	void Update () {
 		transform.Translate(0.1f * -amplitude, 0, 0);
 
+		Debug.Log ("rend.bounds");
+		Debug.Log (rend.bounds);
+		Debug.Log ("ball.transform.position");
+		Debug.Log (ball.transform.position);
+
 		if (rend.bounds.Contains (ball.transform.position) 
 			&& !applyingForce) {
             applyingForce = true;
             Debug.Log("force!!!");
-			rb.AddForce(transform.right * 500.0f * -amplitude);
+			rb.AddForce(transform.right * 100.0f * -amplitude);
 		} 
 
 		if (transform.position.x > 10 || transform.position.x < -10
