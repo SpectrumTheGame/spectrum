@@ -9,24 +9,25 @@ public class MoveWave : MonoBehaviour {
     public float amplitude; 
 
     private bool applyingForce; 
-	private Renderer rend;
+	private Renderer waveRenderer;
+	private Renderer ballRenderer;
 
 	// Use this for initialization
 	void Start () {
 		ball = GameObject.Find ("ball");
 		rb = ball.GetComponent<Rigidbody2D> ();
         applyingForce = false;
-		rend = GetComponent<Renderer>();
+		waveRenderer = GetComponent<Renderer>();
+		ballRenderer = ball.GetComponent<Renderer> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.Translate(0.1f * -amplitude, 0, 0);
 
-		if (rend.bounds.Contains (ball.transform.position) 
+		if (waveRenderer.bounds.Intersects (ballRenderer.bounds) 
 			&& !applyingForce) {
             applyingForce = true;
-            Debug.Log("force!!!");
 			rb.AddForce(transform.right * 100.0f * -amplitude);
 		} 
 
