@@ -21,21 +21,10 @@ public class TrailAnimation : MonoBehaviour {
 		star.transform.localScale = new Vector3 (scale, scale, scale);
 
 		star.transform.position += new Vector3 (Random.Range (-0.5f, 0.5f), Random.Range (-0.5f, 0.5f), 0);
-
-//		Vector2 backDirection = -rb.velocity.normalized;
-//		Debug.Log (backDirection);
-//
-//		Vector2 ballPos = new Vector2(transform.position.x, transform.position.y);
-//		Vector2 backPos = ballPos + backDirection;
-//
-//		Vector2 perpendicular = new Vector2 (backDirection.y, -backDirection.x);
-//		Debug.Log (perpendicular);
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-//		Debug.Log (rb.velocity);
 		if (rb.velocity.magnitude > 0.7) {
 			if (!repeating) {
 				InvokeRepeating ("Spawn", 0, 0.3f);
