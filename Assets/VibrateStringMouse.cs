@@ -13,7 +13,10 @@ public class VibrateStringMouse : MonoBehaviour {
 
     public void startAnimation()
     {
-        GetComponent<AudioSource>().Play();
+        if (PlayerPrefs.GetInt("sound") == 1)
+        {
+            GetComponent<AudioSource>().Play();
+        }
         animated = true;
 
         startTime = Time.time;
