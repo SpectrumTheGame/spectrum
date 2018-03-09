@@ -8,13 +8,16 @@ public class ReachedGoal : MonoBehaviour {
 	public float scaleSpeed = 0.3F;
 
 	private GameObject ball;
-	private GameObject[] objectsToHide;
+
+	private Vector3 centerPos;
+	private Vector3 maxScale; 
+	private Vector3 scaleIncrease = new Vector3 (1.6F, 0.9F, 0); // set to aspect ratio of iphone7
 
 	// Use this for initialization
 	void Start () {
-
-		// get lines so we can destroy them with the animation
-		objectsToHide = GameObject.FindGameObjectsWithTag ("hideAfterWinning"); 
+		centerPos = Camera.main.ViewportToWorldPoint (new Vector3 (0.5f, 0.5f, 10.0F));
+		Debug.Log (centerPos);
+		maxScale = scaleIncrease * 15.0F;
 	}
 	
 	// Update is called once per frame
@@ -22,11 +25,12 @@ public class ReachedGoal : MonoBehaviour {
 		if (isTransitioning) {
 
 			// remove ball so it doesn't interact with goal as it transitions
-			Destroy (ball);
+			Destroy(ball);
 
-			// remove lines so they don't show behind goal
+			// hide objects
+			GameObject[] objectsToHide = GameObject.FindGameObjectsWithTag ("hideAfterWinning"); 
 			foreach (GameObject o in objectsToHide) {
-				Destroy (o);
+				o.SetActive(false);
 			}
 
 			blowUpGoal();
@@ -45,24 +49,16 @@ public class ReachedGoal : MonoBehaviour {
 	void blowUpGoal() {
 		// disable rigidbody behavior on goal (sliding reaction to forces)
 		Rigidbody2D rb = GetComponent<Rigidbody2D>();
-		Destroy (rb);
+		Destroy(rb);
 
-		// center the goal 
-		float distanceFromCamera = 10.0f;
-		Vector3 goalPosition = transform.position;
-		Vector3 centerPos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, distanceFromCamera));
-		transform.position += (centerPos - goalPosition) / 40.0F;
+		// reset flags when target scale achieved
+		isTransitioning = transform.localScale.x < maxScale.x;
 
 		// blow up the goal 
-		Vector3 scaleIncrease = new Vector3(1.6F, 0.9F, 0); // set to aspect ratio of iphone7
-		Vector3 maxScale = scaleIncrease * 5.0F;
-		transform.localScale += scaleIncrease * scaleSpeed;
-
-		// reset flag when target position/size achieved
-		if (transform.position == centerPos && transform.localScale.x > maxScale.x) {
-			isTransitioning = false;
+		if (isTransitioning) {
+			transform.localScale += scaleIncrease * scaleSpeed;
 		}
-
+			
 	}
 
 }
