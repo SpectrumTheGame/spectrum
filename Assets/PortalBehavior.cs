@@ -25,7 +25,7 @@ public class PortalBehavior : MonoBehaviour {
         if (collision.gameObject == ball)
         {
             
-            ball.transform.position = otherPortal.transform.position + (0.2f * inwards);
+            ball.transform.position = otherPortal.transform.position + (0.9f * inwards);
             ball.GetComponent<Rigidbody2D>().velocity = vel.magnitude * inwards;
         }
     }
