@@ -21,6 +21,7 @@ public class TrailAnimation : MonoBehaviour {
 		star.transform.localScale = new Vector3 (scale, scale, scale);
 
 		star.transform.position += new Vector3 (Random.Range (-0.5f, 0.5f), Random.Range (-0.5f, 0.5f), 0);
+		star.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)));
 	}
 	
 	// Update is called once per frame
