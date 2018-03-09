@@ -8,13 +8,13 @@ public class ReachedGoal : MonoBehaviour {
 	public float scaleSpeed = 0.3F;
 
 	private GameObject ball;
-	private GameObject[] lines;
+	private GameObject[] objectsToHide;
 
 	// Use this for initialization
 	void Start () {
 
 		// get lines so we can destroy them with the animation
-		lines = GameObject.FindGameObjectsWithTag ("line"); 
+		objectsToHide = GameObject.FindGameObjectsWithTag ("hideAfterWinning"); 
 	}
 	
 	// Update is called once per frame
@@ -25,8 +25,8 @@ public class ReachedGoal : MonoBehaviour {
 			Destroy (ball);
 
 			// remove lines so they don't show behind goal
-			foreach (GameObject line in lines) {
-				Destroy (line);
+			foreach (GameObject o in objectsToHide) {
+				Destroy (o);
 			}
 
 			blowUpGoal();
