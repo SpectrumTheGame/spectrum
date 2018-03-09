@@ -27,8 +27,13 @@ public class MoveWave : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// ball destroyed when reaches goal/transitioning
+		// these are conditionals because of the new wave prefab
+		if (amplitude > 0) {
+			transform.Translate (0.1f * amplitude, 0, 0);
+		} else {
+			transform.Translate (0.1f * -amplitude, 0, 0);
+		}
 
-		transform.Translate(0.1f * -amplitude, 0, 0);
 
 		// don't iteract with the ball if ball doesn't exist
 		if (ball == null)
@@ -38,7 +43,12 @@ public class MoveWave : MonoBehaviour {
 		if (waveRenderer.bounds.Intersects (ballRenderer.bounds) 
 			&& !applyingForce) {
             applyingForce = true;
-			rb.AddForce(transform.right * 100.0f * -amplitude);
+			// these are conditionals because of the new wave prefab
+			if (amplitude > 0) {
+				rb.AddForce(transform.right * 100.0f * amplitude);
+			} else {
+				rb.AddForce(transform.right * 100.0f * -amplitude);
+			}
 		} 
 
 		// destroy the wave when it moves out of bounds
