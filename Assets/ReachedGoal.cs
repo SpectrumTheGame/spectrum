@@ -13,13 +13,22 @@ public class ReachedGoal : MonoBehaviour {
 	private Vector3 maxScale; 
 	private Vector3 scaleIncrease = new Vector3 (1.6F, 0.9F, 0); // set to aspect ratio of iphone7
 
+	private GameObject[] transitionButtons; 
+
 	// Use this for initialization
 	void Start () {
+
+		// init scale params
 		centerPos = Camera.main.ViewportToWorldPoint (new Vector3 (0.5f, 0.5f, 10.0F));
-		Debug.Log (centerPos);
 		maxScale = scaleIncrease * 15.0F;
+
+		// init transition buttons
+		transitionButtons = GameObject.FindGameObjectsWithTag ("transitionButton");
+		foreach (GameObject t in transitionButtons) {
+			t.SetActive(false); 
+		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (isTransitioning) {
@@ -34,12 +43,23 @@ public class ReachedGoal : MonoBehaviour {
 			}
 
 			blowUpGoal();
+
+			// show buttons
+			StartCoroutine(showTransitionButtons());
+
 		}
-		
+
+	}
+
+	IEnumerator showTransitionButtons() {
+		yield return new WaitForSeconds (0.5F);
+		foreach (GameObject t in transitionButtons) {
+			t.SetActive(true); 
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		
+
 		if (collision.gameObject.name == "ball") {
 			ball = collision.gameObject;
 			isTransitioning = true; 
@@ -58,7 +78,7 @@ public class ReachedGoal : MonoBehaviour {
 		if (isTransitioning) {
 			transform.localScale += scaleIncrease * scaleSpeed;
 		}
-			
+
 	}
 
 }
