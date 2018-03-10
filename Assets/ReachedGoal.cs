@@ -32,6 +32,7 @@ public class ReachedGoal : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isTransitioning) {
+			Camera.main.GetComponent<ReplaySounds> ().PlayAllSounds ();
 
 			// remove ball so it doesn't interact with goal as it transitions
 			Destroy(ball);

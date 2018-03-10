@@ -15,7 +15,7 @@ public class ReplaySounds : MonoBehaviour {
 
     IEnumerator Play(AudioSource curr, int i)
     {
-        yield return new WaitForSeconds(2 * i);
+        yield return new WaitForSeconds(1 * i);
         curr.Play();
     }
 
