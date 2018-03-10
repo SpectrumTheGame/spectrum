@@ -13,9 +13,14 @@ public class VibrateStringMouse : MonoBehaviour {
 
     public void startAnimation()
     {
+        AudioSource audio = GetComponent<AudioSource>();
+        AudioSource a = Camera.main.gameObject.AddComponent<AudioSource>();
+        a.playOnAwake = false;
+        a.clip = audio.clip;
+
         if (PlayerPrefs.GetInt("sound") == 1)
         {
-            GetComponent<AudioSource>().Play();
+            audio.Play();
         }
         animated = true;
 
