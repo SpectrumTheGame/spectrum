@@ -18,6 +18,9 @@ public class VibrateStringMouse : MonoBehaviour {
         a.playOnAwake = false;
         a.clip = audio.clip;
 
+        Camera.main.GetComponent<ReplaySounds>().positions.Add(transform.position);
+        Camera.main.GetComponent<ReplaySounds>().materials.Add(GetComponent<LineRenderer>().materials[0]);
+
         if (PlayerPrefs.GetInt("sound") == 1)
         {
             audio.Play();

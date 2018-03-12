@@ -43,13 +43,15 @@ public class ReachedGoal : MonoBehaviour {
 				o.SetActive(false);
 			}
 
+            blowUpGoal();
+
             if (!replayed)
             {
                 replayed = true;
                 Camera.main.GetComponent<ReplaySounds>().PlayAllSounds();
             }
 
-			blowUpGoal();
+			
 
 			// show buttons
 			StartCoroutine(showTransitionButtons());
