@@ -6,6 +6,7 @@ public class ReachedGoal : MonoBehaviour {
 
 	public bool isTransitioning = false;
 	public float scaleSpeed = 0.3F;
+    public bool replayed = false;
 
 	private GameObject ball;
 
@@ -32,7 +33,6 @@ public class ReachedGoal : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isTransitioning) {
-			Camera.main.GetComponent<ReplaySounds> ().PlayAllSounds ();
 
 			// remove ball so it doesn't interact with goal as it transitions
 			Destroy(ball);
@@ -42,6 +42,12 @@ public class ReachedGoal : MonoBehaviour {
 			foreach (GameObject o in objectsToHide) {
 				o.SetActive(false);
 			}
+
+            if (!replayed)
+            {
+                replayed = true;
+                Camera.main.GetComponent<ReplaySounds>().PlayAllSounds();
+            }
 
 			blowUpGoal();
 
