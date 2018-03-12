@@ -18,6 +18,8 @@ public class BallController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+
 		// Got rid of Math.abs because doesn't seem needed?
 		if (pos.x > Screen.width || pos.x < 0.0f)
 		{
