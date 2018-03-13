@@ -10,7 +10,6 @@ public class VibrateStringMouse : MonoBehaviour {
 
     private float startTime;
     private bool animated;
-
     public void startAnimation()
     {
         AudioSource audio = GetComponent<AudioSource>();
@@ -22,9 +21,9 @@ public class VibrateStringMouse : MonoBehaviour {
         {
             audio.Play();
         }
-        animated = true;
 
         startTime = Time.time;
+        animated = true;
         
         this.GetComponentInParent<SpawnForce>().triggered = true;
         this.GetComponentInParent<SpawnForce>().amplitude = amplitude;
@@ -39,12 +38,10 @@ public class VibrateStringMouse : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         int numPoints = transform.childCount;
-        Debug.Log(transform.position);
         for (int i = 0; i < numPoints; i++)
         {
             GameObject c = transform.GetChild(i).gameObject;
 			c.transform.localPosition = new Vector3(0, i * segmentLen, 0);
-            Debug.Log(c.transform.position);
         }
 
         
@@ -56,7 +53,7 @@ public class VibrateStringMouse : MonoBehaviour {
         {
             float t = Time.time - startTime;
             int numPoints = transform.childCount;
-			float x = amplitude * Mathf.Sin(frequency * 1.0f * segmentLen) * Mathf.Sin(Mathf.PI * t);
+			float x = amplitude * Mathf.Sin(frequency * 1.0f) * Mathf.Sin(Mathf.PI * t);
             float x_d = x * Mathf.Exp(-t / 2.0f);
             GameObject c = transform.GetChild(1).gameObject;
 			c.transform.localPosition = new Vector3(x_d, 1 * segmentLen, 0);
