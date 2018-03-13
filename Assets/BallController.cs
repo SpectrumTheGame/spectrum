@@ -4,17 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BallController : MonoBehaviour {
+	private GameObject flashScreen;
 
 	// Use this for initialization
-	void Start () {		
+	void Start () {        
+		flashScreen = GameObject.Find ("flash screen");
+		flashScreen.SetActive (false);
 	}
 
-    IEnumerator Pause()
-    {
-        yield return new WaitForSeconds(1.0f);
+	IEnumerator Pause()
+	{
+		yield return new WaitForSeconds(1.0f);
+		StartCoroutine (flash ());
 
-        Camera.main.GetComponent<changeScene>().resetScene();
-    }
+		Camera.main.GetComponent<changeScene>().resetScene();
+	}
+
+	IEnumerator flash() {
+		flashScreen.SetActive (true);
+		yield return new WaitForSeconds (1.0F);
+		flashScreen.SetActive (false);
+	} 
 
     // Update is called once per frame
     void Update () {
