@@ -10,7 +10,6 @@ public class ReachedGoal : MonoBehaviour {
 
 	private GameObject ball;
 
-	private Vector3 centerPos;
 	private Vector3 maxScale; 
 	private Vector3 scaleIncrease = new Vector3 (1.6F, 0.9F, 0); // set to aspect ratio of iphone7
 
@@ -20,7 +19,6 @@ public class ReachedGoal : MonoBehaviour {
 	void Start () {
 
 		// init scale params
-		centerPos = Camera.main.ViewportToWorldPoint (new Vector3 (0.5f, 0.5f, 10.0F));
 		maxScale = scaleIncrease * 15.0F;
 
 		// init transition buttons
